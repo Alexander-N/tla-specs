@@ -37,7 +37,7 @@ RequestSet(n, k, v) ==
   /\ Broadcast(n, "set", <<timestamp, k, v>>)
 
 RequestDelete(n, k) ==
-  \E <<t, kp, v>> \in values[n] :
+  \E <<t, kp, v>> \in values[n]:
     /\ kp = k
     /\ Broadcast(n, "delete", t)
 
@@ -50,9 +50,9 @@ RequestDeleteOnNode ==
   /\ UNCHANGED timestamp
 
 DeliverOnNode ==
-  \E n \in nodeIds :
+  \E n \in nodeIds:
     /\ Len(deliverQueues[n]) > 0
-    /\ \E <<command, payload>> \in {Head(deliverQueues[n])} :
+    /\ \E <<command, payload>> \in {Head(deliverQueues[n])}:
         Deliver(n, command, payload)
     /\ deliverQueues' = [deliverQueues EXCEPT ![n] = Tail(deliverQueues[n])]
   /\ UNCHANGED timestamp
@@ -78,7 +78,7 @@ Next ==
 Spec == Init /\ [][Next]_vars /\ WF_vars(DeliverOnNode)
 
 AllValuesEqual ==
-  \A <<n1, n2>> \in nodeIds \X nodeIds :
+  \A n1, n2 \in nodeIds:
     values[n1] = values[n2]
 EventuallyConsistent == <>[]AllValuesEqual
 ====

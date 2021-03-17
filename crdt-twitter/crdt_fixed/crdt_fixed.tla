@@ -81,7 +81,7 @@ Next ==
 Spec == Init /\ [][Next]_vars /\ WF_vars(DeliverOnNode)
 
 AllValuesEqual ==
-  \A <<n1, n2>> \in nodeIds \X nodeIds :
+  \A n1, n2 \in nodeIds:
     values[n1] = values[n2]
 EventuallyConsistent == <>[]AllValuesEqual
 ====
