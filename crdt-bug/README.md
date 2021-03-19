@@ -1,4 +1,4 @@
-# CRDT-Twitter
+# CRDT-Bug
 
 The two specs are based on this [twitter thread](https://twitter.com/martinkl/status/1327025979454263297). I tried to make minimal specs which look similar to the pseudocode.
 
