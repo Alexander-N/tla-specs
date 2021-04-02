@@ -9,11 +9,11 @@ While [dual_writes.tla](dual_writes.tla) is enough to model the problem, there i
 Unfortunately this orders the events as they appear in the error trace, which does not need to reflect the causal relationships in the system.
 
 For example we can get the following visualization:
-<img src="images/good_trace.png" width="70%">
+![good trace](images/good_trace.png)
 
 That seems sensible, but several pairs of events on ClientA and ClientB are connected by a line while in the system we model the clients don't communicate.
 
 We can also get a trace like this, which might confuse more than it helps:
-<img src="images/bad_trace.png" width="70%">
+![bad trace](images/bad_trace.png)
 
 TODO: Try to implement vector clocks in the spec to produce more accurate visualizations.
