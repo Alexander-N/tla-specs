@@ -1,5 +1,5 @@
 ---- MODULE dual_writes ----
-EXTENDS TLC, Integers, ShiViz
+EXTENDS TLC, Integers
 CONSTANTS Clients, Database, Cache
 
 Storages == {Database, Cache}

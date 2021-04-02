@@ -1,0 +1,208 @@
+^\[\n _TEAction \|-> \[\n(.|\n)*?name \|-> "(?<event>.*)"(.|\n)*? MessageCache \|-> (?<MessageCache>.*),\n MessageDB \|-> (?<MessageDB>.*),\n ValueCache \|-> (?<ValueCache>.*),\n ValueDB \|-> (?<ValueDB>.*),\nHost \|-> (?<host>.*),\nClock \|-> "(?<clock>.*)"
+<<
+,
+[
+ _TEAction |-> [
+   position |-> 13,
+   name |-> "AckCache",
+   location |-> "line 88, col 19 to line 91, col 81 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> ClientB,
+ ValueDB |-> ClientA,
+Host |-> ClientB,
+Clock |-> "{\"ClientA\":4,\"ClientB\":4,\"Database\":2,\"Cache\":2}",
+ pc |-> ( ClientA :> "Done" @@
+  ClientB :> "Done" @@
+  Database :> "Done" @@
+  Cache :> "Done" )
+],
+[
+ _TEAction |-> [
+   position |-> 12,
+   name |-> "ReceiveCache",
+   location |-> "line 119, col 17 to line 124, col 53 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> ClientB,
+ ValueDB |-> ClientA,
+Host |-> Cache,
+Clock |-> "{\"ClientA\":4,\"ClientB\":3,\"Database\":2,\"Cache\":2}",
+ pc |-> ( ClientA :> "Done" @@
+  ClientB :> "AckCache" @@
+  Database :> "Done" @@
+  Cache :> "Done" )
+],
+[
+ _TEAction |-> [
+   position |-> 11,
+   name |-> "SendCache",
+   location |-> "line 82, col 20 to line 86, col 68 of module dual_writes2"
+ ],
+ MessageCache |-> ClientB,
+ MessageDB |-> Null,
+ ValueCache |-> ClientA,
+ ValueDB |-> ClientA,
+Host |-> ClientB,
+Clock |-> "{\"ClientA\":4,\"ClientB\":3,\"Database\":2,\"Cache\":1}",
+ pc |-> ( ClientA :> "Done" @@
+  ClientB :> "AckCache" @@
+  Database :> "Done" @@
+  Cache :> "ReceiveCache" )
+],
+[
+ _TEAction |-> [
+   position |-> 10,
+   name |-> "AckCache",
+   location |-> "line 88, col 19 to line 91, col 81 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> ClientA,
+ ValueDB |-> ClientA,
+Host |-> ClientA,
+Clock |-> "{\"ClientA\":4,\"ClientB\":2,\"Database\":2,\"Cache\":1}",
+ pc |-> ( ClientA :> "Done" @@
+  ClientB :> "SendCache" @@
+  Database :> "Done" @@
+  Cache :> "ReceiveCache" )
+],
+[
+ _TEAction |-> [
+   position |-> 9,
+   name |-> "ReceiveCache1",
+   location |-> "line 112, col 18 to line 117, col 54 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> ClientA,
+ ValueDB |-> ClientA,
+Host |-> Cache,
+Clock |-> "{\"ClientA\":3,\"ClientB\":2,\"Database\":2,\"Cache\":1}",
+ pc |-> ( ClientA :> "AckCache" @@
+  ClientB :> "SendCache" @@
+  Database :> "Done" @@
+  Cache :> "ReceiveCache" )
+],
+[
+ _TEAction |-> [
+   position |-> 8,
+   name |-> "SendCache",
+   location |-> "line 82, col 20 to line 86, col 68 of module dual_writes2"
+ ],
+ MessageCache |-> ClientA,
+ MessageDB |-> Null,
+ ValueCache |-> Null,
+ ValueDB |-> ClientA,
+Host |-> ClientA,
+Clock |-> "{\"ClientA\":3,\"ClientB\":2,\"Database\":2,\"Cache\":0}",
+ pc |-> ( ClientA :> "AckCache" @@
+  ClientB :> "SendCache" @@
+  Database :> "Done" @@
+  Cache :> "ReceiveCache1" )
+],
+[
+ _TEAction |-> [
+   position |-> 7,
+   name |-> "AckDatabase",
+   location |-> "line 76, col 22 to line 80, col 50 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> Null,
+ ValueDB |-> ClientA,
+Host |-> ClientA,
+Clock |-> "{\"ClientA\":2,\"ClientB\":2,\"Database\":2,\"Cache\":0}",
+ pc |-> ( ClientA :> "SendCache" @@
+  ClientB :> "SendCache" @@
+  Database :> "Done" @@
+  Cache :> "ReceiveCache1" )
+],
+[
+ _TEAction |-> [
+   position |-> 6,
+   name |-> "ReceiveDatabase2",
+   location |-> "line 103, col 21 to line 108, col 63 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> Null,
+ ValueDB |-> ClientA,
+Host |-> Database,
+Clock |-> "{\"ClientA\":1,\"ClientB\":2,\"Database\":2,\"Cache\":0}",
+ pc |-> ( ClientA :> "AckDatabase" @@
+  ClientB :> "SendCache" @@
+  Database :> "Done" @@
+  Cache :> "ReceiveCache1" )
+],
+[
+ _TEAction |-> [
+   position |-> 5,
+   name |-> "SendDatabase",
+   location |-> "line 70, col 23 to line 74, col 74 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> ClientA,
+ ValueCache |-> Null,
+ ValueDB |-> ClientB,
+Host |-> ClientA,
+Clock |-> "{\"ClientA\":1,\"ClientB\":2,\"Database\":1,\"Cache\":0}",
+ pc |-> ( ClientA :> "AckDatabase" @@
+  ClientB :> "SendCache" @@
+  Database :> "ReceiveDatabase2" @@
+  Cache :> "ReceiveCache1" )
+],
+[
+ _TEAction |-> [
+   position |-> 4,
+   name |-> "AckDatabase",
+   location |-> "line 76, col 22 to line 80, col 50 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> Null,
+ ValueDB |-> ClientB,
+Host |-> ClientB,
+Clock |-> "{\"ClientA\":0,\"ClientB\":2,\"Database\":1,\"Cache\":0}",
+ pc |-> ( ClientA :> "SendDatabase" @@
+  ClientB :> "SendCache" @@
+  Database :> "ReceiveDatabase2" @@
+  Cache :> "ReceiveCache1" )
+],
+[
+ _TEAction |-> [
+   position |-> 3,
+   name |-> "ReceiveDatabase1",
+   location |-> "line 96, col 21 to line 101, col 63 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> Null,
+ ValueCache |-> Null,
+ ValueDB |-> ClientB,
+Host |-> Database,
+Clock |-> "{\"ClientA\":0,\"ClientB\":1,\"Database\":1,\"Cache\":0}",
+ pc |-> ( ClientA :> "SendDatabase" @@
+  ClientB :> "AckDatabase" @@
+  Database :> "ReceiveDatabase2" @@
+  Cache :> "ReceiveCache1" )
+],
+[
+ _TEAction |-> [
+   position |-> 2,
+   name |-> "SendDatabase",
+   location |-> "line 70, col 23 to line 74, col 74 of module dual_writes2"
+ ],
+ MessageCache |-> Null,
+ MessageDB |-> ClientB,
+ ValueCache |-> Null,
+ ValueDB |-> Null,
+Host |-> ClientB,
+Clock |-> "{\"ClientA\":0,\"ClientB\":1,\"Database\":0,\"Cache\":0}",
+ pc |-> ( ClientA :> "SendDatabase" @@
+  ClientB :> "AckDatabase" @@
+  Database :> "ReceiveDatabase1" @@
+  Cache :> "ReceiveCache1" )
+]
+>>
