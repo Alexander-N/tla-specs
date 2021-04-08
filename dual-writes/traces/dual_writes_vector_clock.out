@@ -1,0 +1,1008 @@
+.* Event = "(?<event>.*)"(.|\n)*?Host = (?<host>.*)(.|\n)*?VectorClock = "(?<clock>.*)"(.|\n)*?value = (?<values>.*)
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.15 of Day Month 20?? (rev: d977051)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 37 and seed -8413649031928235915 with 1 worker on 8 cores with 3524MB heap and 64MB offheap memory [pid: 45052] (Linux 5.4.0-70-generic amd64, Ubuntu 11.0.10 x86_64, MSBDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /home/a/projects/tla-specs/dual-writes/dual_writes_vector_clock.tla
+Warning: symbols were renamed.
+Parsing file /tmp/TLC.tla (jar:file:/home/a/.vscode/extensions/alygin.vscode-tlaplus-1.5.4/tools/tla2tools.jar!/tla2sany/StandardModules/TLC.tla)
+Parsing file /tmp/Integers.tla (jar:file:/home/a/.vscode/extensions/alygin.vscode-tlaplus-1.5.4/tools/tla2tools.jar!/tla2sany/StandardModules/Integers.tla)
+Parsing file /tmp/Sequences.tla (jar:file:/home/a/.vscode/extensions/alygin.vscode-tlaplus-1.5.4/tools/tla2tools.jar!/tla2sany/StandardModules/Sequences.tla)
+Parsing file /tmp/Json.tla (jar:file:/home/a/.vscode/extensions/alygin.vscode-tlaplus-1.5.4/tools/tla2tools.jar!/tla2sany/StandardModules/Json.tla)
+Parsing file /tmp/Naturals.tla (jar:file:/home/a/.vscode/extensions/alygin.vscode-tlaplus-1.5.4/tools/tla2tools.jar!/tla2sany/StandardModules/Naturals.tla)
+Parsing file /tmp/FiniteSets.tla (jar:file:/home/a/.vscode/extensions/alygin.vscode-tlaplus-1.5.4/tools/tla2tools.jar!/tla2sany/StandardModules/FiniteSets.tla)
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Integers
+Semantic processing of module Json
+Semantic processing of module dual_writes_vector_clock
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2021-04-09 02:02:13)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2021-04-09 02:02:13.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(17) at 2021-04-09 02:02:13: 325 states generated, 201 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2192:0 @!@!@
+Checking temporal properties for the complete state space with 201 total distinct states at (2021-04-09 02:02:13)
+@!@!@ENDMSG 2192 @!@!@
+@!@!@STARTMSG 2116:1 @!@!@
+Temporal properties were violated.
+
+@!@!@ENDMSG 2116 @!@!@
+@!@!@STARTMSG 2264:1 @!@!@
+The following behavior constitutes a counter-example:
+
+@!@!@ENDMSG 2264 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ localVectorClock = ( Database :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = (ClientA :> Null @@ ClientB :> Null)
+/\ pc = ( ClientA :> "SendDatabase" @@
+  ClientB :> "SendDatabase" @@
+  Database :> "Receive" @@
+  Cache :> "Receive" )
+/\ receivedMessage = (Database :> Null @@ Cache :> Null)
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = Null
+/\ Host = Null
+/\ VectorClock = (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0)
+/\ received = (Database :> 0 @@ Cache :> 0)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> Null @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <SendDatabase line 140, col 23 to line 155, col 74 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = (ClientA :> Null @@ ClientB :> Null)
+/\ pc = ( ClientA :> "GetAckDatabase" @@
+  ClientB :> "SendDatabase" @@
+  Database :> "Receive" @@
+  Cache :> "Receive" )
+/\ receivedMessage = (Database :> Null @@ Cache :> Null)
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = "SendDatabase"
+/\ Host = ClientA
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":0,\"Database\":0,\"Cache\":0}"
+/\ received = (Database :> 0 @@ Cache :> 0)
+/\ Messages = ( ClientA :> <<>> @@
+  ClientB :> <<>> @@
+  Database :>
+      << [ clock |->
+               (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0),
+           value |-> ClientA,
+           destination |-> Database,
+           source |-> ClientA ] >> @@
+  Cache :> <<>> )
+/\ value = (Database :> Null @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Receive line 205, col 18 to line 216, col 71 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 1 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = (ClientA :> Null @@ ClientB :> Null)
+/\ pc = ( ClientA :> "GetAckDatabase" @@
+  ClientB :> "SendDatabase" @@
+  Database :> "SendAck" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientA,
+        destination |-> Database,
+        source |-> ClientA ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = "Receive"
+/\ Host = Database
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":0,\"Database\":1,\"Cache\":0}"
+/\ received = (Database :> 1 @@ Cache :> 0)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> ClientA @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <SendAck line 218, col 18 to line 235, col 61 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = (ClientA :> Null @@ ClientB :> Null)
+/\ pc = ( ClientA :> "GetAckDatabase" @@
+  ClientB :> "SendDatabase" @@
+  Database :> "Receive" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientA,
+        destination |-> Database,
+        source |-> ClientA ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = "SendAck"
+/\ Host = Database
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":0,\"Database\":2,\"Cache\":0}"
+/\ received = (Database :> 1 @@ Cache :> 0)
+/\ Messages = ( ClientA :>
+      << [ clock |->
+               (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+           value |-> Ack,
+           destination |-> ClientA,
+           source |-> Database ] >> @@
+  ClientB :> <<>> @@
+  Database :> <<>> @@
+  Cache :> <<>> )
+/\ value = (Database :> ClientA @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <GetAckDatabase line 157, col 25 to line 169, col 59 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :> Null )
+/\ pc = ( ClientA :> "SendCache" @@
+  ClientB :> "SendDatabase" @@
+  Database :> "Receive" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientA,
+        destination |-> Database,
+        source |-> ClientA ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 2 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = "GetAckDatabase"
+/\ Host = ClientA
+/\ VectorClock = "{\"ClientA\":2,\"ClientB\":0,\"Database\":2,\"Cache\":0}"
+/\ received = (Database :> 1 @@ Cache :> 0)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> ClientA @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <SendDatabase line 140, col 23 to line 155, col 74 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :> Null )
+/\ pc = ( ClientA :> "SendCache" @@
+  ClientB :> "GetAckDatabase" @@
+  Database :> "Receive" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientA,
+        destination |-> Database,
+        source |-> ClientA ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 2 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = "SendDatabase"
+/\ Host = ClientB
+/\ VectorClock = "{\"ClientA\":0,\"ClientB\":1,\"Database\":0,\"Cache\":0}"
+/\ received = (Database :> 1 @@ Cache :> 0)
+/\ Messages = ( ClientA :> <<>> @@
+  ClientB :> <<>> @@
+  Database :>
+      << [ clock |->
+               (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+           value |-> ClientB,
+           destination |-> Database,
+           source |-> ClientB ] >> @@
+  Cache :> <<>> )
+/\ value = (Database :> ClientA @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Receive line 205, col 18 to line 216, col 71 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 3 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :> Null )
+/\ pc = ( ClientA :> "SendCache" @@
+  ClientB :> "GetAckDatabase" @@
+  Database :> "SendAck" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 2 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = "Receive"
+/\ Host = Database
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":1,\"Database\":3,\"Cache\":0}"
+/\ received = (Database :> 2 @@ Cache :> 0)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> ClientB @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <SendAck line 218, col 18 to line 235, col 61 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :> Null )
+/\ pc = ( ClientA :> "SendCache" @@
+  ClientB :> "GetAckDatabase" @@
+  Database :> "Done" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 2 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0) )
+/\ Event = "SendAck"
+/\ Host = Database
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":1,\"Database\":4,\"Cache\":0}"
+/\ received = (Database :> 2 @@ Cache :> 0)
+/\ Messages = ( ClientA :> <<>> @@
+  ClientB :>
+      << [ clock |->
+               (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0),
+           value |-> Ack,
+           destination |-> ClientB,
+           source |-> Database ] >> @@
+  Database :> <<>> @@
+  Cache :> <<>> )
+/\ value = (Database :> ClientB @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <GetAckDatabase line 157, col 25 to line 169, col 59 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Database ] )
+/\ pc = ( ClientA :> "SendCache" @@
+  ClientB :> "SendCache" @@
+  Database :> "Done" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 2 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 2 @@ Database :> 4 @@ Cache :> 0) )
+/\ Event = "GetAckDatabase"
+/\ Host = ClientB
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":2,\"Database\":4,\"Cache\":0}"
+/\ received = (Database :> 2 @@ Cache :> 0)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> ClientB @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <SendCache line 171, col 20 to line 186, col 71 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 0 @@ ClientB :> 0 @@ Database :> 0 @@ Cache :> 0) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Database ] )
+/\ pc = ( ClientA :> "SendCache" @@
+  ClientB :> "GetAckCache" @@
+  Database :> "Done" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :> Null )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 2 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0) )
+/\ Event = "SendCache"
+/\ Host = ClientB
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":3,\"Database\":4,\"Cache\":0}"
+/\ received = (Database :> 2 @@ Cache :> 0)
+/\ Messages = ( ClientA :> <<>> @@
+  ClientB :> <<>> @@
+  Database :> <<>> @@
+  Cache :>
+      << [ clock |->
+               (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0),
+           value |-> ClientB,
+           destination |-> Cache,
+           source |-> ClientB ] >> )
+/\ value = (Database :> ClientB @@ Cache :> Null)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <Receive line 205, col 18 to line 216, col 71 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 1) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Database ] )
+/\ pc = ( ClientA :> "SendCache" @@
+  ClientB :> "GetAckCache" @@
+  Database :> "Done" @@
+  Cache :> "SendAck" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Cache,
+        source |-> ClientB ] )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 2 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0) )
+/\ Event = "Receive"
+/\ Host = Cache
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":3,\"Database\":4,\"Cache\":1}"
+/\ received = (Database :> 2 @@ Cache :> 1)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> ClientB @@ Cache :> ClientB)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <SendCache line 171, col 20 to line 186, col 71 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 1) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Database ] )
+/\ pc = ( ClientA :> "GetAckCache" @@
+  ClientB :> "GetAckCache" @@
+  Database :> "Done" @@
+  Cache :> "SendAck" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Cache,
+        source |-> ClientB ] )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0) )
+/\ Event = "SendCache"
+/\ Host = ClientA
+/\ VectorClock = "{\"ClientA\":3,\"ClientB\":0,\"Database\":2,\"Cache\":0}"
+/\ received = (Database :> 2 @@ Cache :> 1)
+/\ Messages = ( ClientA :> <<>> @@
+  ClientB :> <<>> @@
+  Database :> <<>> @@
+  Cache :>
+      << [ clock |->
+               (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+           value |-> ClientA,
+           destination |-> Cache,
+           source |-> ClientA ] >> )
+/\ value = (Database :> ClientB @@ Cache :> ClientB)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <SendAck line 218, col 18 to line 235, col 61 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 2) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Database ] )
+/\ pc = ( ClientA :> "GetAckCache" @@
+  ClientB :> "GetAckCache" @@
+  Database :> "Done" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Cache,
+        source |-> ClientB ] )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0) )
+/\ Event = "SendAck"
+/\ Host = Cache
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":3,\"Database\":4,\"Cache\":2}"
+/\ received = (Database :> 2 @@ Cache :> 1)
+/\ Messages = ( ClientA :> <<>> @@
+  ClientB :>
+      << [ clock |->
+               (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 2),
+           value |-> Ack,
+           destination |-> ClientB,
+           source |-> Cache ] >> @@
+  Database :> <<>> @@
+  Cache :>
+      << [ clock |->
+               (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+           value |-> ClientA,
+           destination |-> Cache,
+           source |-> ClientA ] >> )
+/\ value = (Database :> ClientB @@ Cache :> ClientB)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <GetAckCache line 188, col 22 to line 200, col 56 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 2) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 2),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Cache ] )
+/\ pc = ( ClientA :> "GetAckCache" @@
+  ClientB :> "Done" @@
+  Database :> "Done" @@
+  Cache :> "Receive" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Cache,
+        source |-> ClientB ] )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 4 @@ Database :> 4 @@ Cache :> 2) )
+/\ Event = "GetAckCache"
+/\ Host = ClientB
+/\ VectorClock = "{\"ClientA\":1,\"ClientB\":4,\"Database\":4,\"Cache\":2}"
+/\ received = (Database :> 2 @@ Cache :> 1)
+/\ Messages = ( ClientA :> <<>> @@
+  ClientB :> <<>> @@
+  Database :> <<>> @@
+  Cache :>
+      << [ clock |->
+               (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+           value |-> ClientA,
+           destination |-> Cache,
+           source |-> ClientA ] >> )
+/\ value = (Database :> ClientB @@ Cache :> ClientB)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <Receive line 205, col 18 to line 216, col 71 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 3 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 3) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 2),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Cache ] )
+/\ pc = ( ClientA :> "GetAckCache" @@
+  ClientB :> "Done" @@
+  Database :> "Done" @@
+  Cache :> "SendAck" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :>
+      [ clock |-> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> ClientA,
+        destination |-> Cache,
+        source |-> ClientA ] )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 4 @@ Database :> 4 @@ Cache :> 2) )
+/\ Event = "Receive"
+/\ Host = Cache
+/\ VectorClock = "{\"ClientA\":3,\"ClientB\":3,\"Database\":4,\"Cache\":3}"
+/\ received = (Database :> 2 @@ Cache :> 2)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> ClientB @@ Cache :> ClientA)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <SendAck line 218, col 18 to line 235, col 61 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 3 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 4) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Database ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 2),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Cache ] )
+/\ pc = ( ClientA :> "GetAckCache" @@
+  ClientB :> "Done" @@
+  Database :> "Done" @@
+  Cache :> "Done" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :>
+      [ clock |-> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> ClientA,
+        destination |-> Cache,
+        source |-> ClientA ] )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 4 @@ Database :> 4 @@ Cache :> 2) )
+/\ Event = "SendAck"
+/\ Host = Cache
+/\ VectorClock = "{\"ClientA\":3,\"ClientB\":3,\"Database\":4,\"Cache\":4}"
+/\ received = (Database :> 2 @@ Cache :> 2)
+/\ Messages = ( ClientA :>
+      << [ clock |->
+               (ClientA :> 3 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 4),
+           value |-> Ack,
+           destination |-> ClientA,
+           source |-> Cache ] >> @@
+  ClientB :> <<>> @@
+  Database :> <<>> @@
+  Cache :> <<>> )
+/\ value = (Database :> ClientB @@ Cache :> ClientA)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <GetAckCache line 188, col 22 to line 200, col 56 of module dual_writes_vector_clock>
+/\ localVectorClock = ( Database :> (ClientA :> 1 @@ ClientB :> 1 @@ Database :> 4 @@ Cache :> 0) @@
+  Cache :> (ClientA :> 3 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 4) )
+/\ receivedMessage_ = ( ClientA :>
+      [ clock |-> (ClientA :> 3 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 4),
+        value |-> Ack,
+        destination |-> ClientA,
+        source |-> Cache ] @@
+  ClientB :>
+      [ clock |-> (ClientA :> 1 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 2),
+        value |-> Ack,
+        destination |-> ClientB,
+        source |-> Cache ] )
+/\ pc = ( ClientA :> "Done" @@
+  ClientB :> "Done" @@
+  Database :> "Done" @@
+  Cache :> "Done" )
+/\ receivedMessage = ( Database :>
+      [ clock |-> (ClientA :> 0 @@ ClientB :> 1 @@ Database :> 0 @@ Cache :> 0),
+        value |-> ClientB,
+        destination |-> Database,
+        source |-> ClientB ] @@
+  Cache :>
+      [ clock |-> (ClientA :> 3 @@ ClientB :> 0 @@ Database :> 2 @@ Cache :> 0),
+        value |-> ClientA,
+        destination |-> Cache,
+        source |-> ClientA ] )
+/\ localVectorClock_ = ( ClientA :> (ClientA :> 4 @@ ClientB :> 3 @@ Database :> 4 @@ Cache :> 4) @@
+  ClientB :> (ClientA :> 1 @@ ClientB :> 4 @@ Database :> 4 @@ Cache :> 2) )
+/\ Event = "GetAckCache"
+/\ Host = ClientA
+/\ VectorClock = "{\"ClientA\":4,\"ClientB\":3,\"Database\":4,\"Cache\":4}"
+/\ received = (Database :> 2 @@ Cache :> 2)
+/\ Messages = (ClientA :> <<>> @@ ClientB :> <<>> @@ Database :> <<>> @@ Cache :> <<>>)
+/\ value = (Database :> ClientB @@ Cache :> ClientA)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2218:4 @!@!@
+18: Stuttering
+@!@!@ENDMSG 2218 @!@!@
+@!@!@STARTMSG 2267:0 @!@!@
+Finished checking temporal properties in 00s at 2021-04-09 02:02:13
+@!@!@ENDMSG 2267 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2021-04-09 02:02:13
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 124, col 1 to line 124, col 4 of module dual_writes_vector_clock>: 2:2
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 125, col 9 to line 138, col 74 of module dual_writes_vector_clock: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<SendDatabase line 140, col 1 to line 140, col 18 of module dual_writes_vector_clock>: 18:22
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 140, col 26 to line 140, col 50 of module dual_writes_vector_clock: 452
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 140, col 26 to line 140, col 33 of module dual_writes_vector_clock: 430
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 141, col 26 to line 141, col 117 of module dual_writes_vector_clock: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 142, col 26 to line 149, col 71 of module dual_writes_vector_clock: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 150, col 26 to line 150, col 37 of module dual_writes_vector_clock: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 151, col 26 to line 151, col 43 of module dual_writes_vector_clock: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 152, col 26 to line 152, col 78 of module dual_writes_vector_clock: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 153, col 26 to line 153, col 69 of module dual_writes_vector_clock: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 154, col 26 to line 155, col 74 of module dual_writes_vector_clock: 22
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<GetAckDatabase line 157, col 1 to line 157, col 20 of module dual_writes_vector_clock>: 30:44
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 157, col 28 to line 157, col 54 of module dual_writes_vector_clock: 472
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 157, col 28 to line 157, col 35 of module dual_writes_vector_clock: 428
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 158, col 28 to line 158, col 50 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 158, col 28 to line 158, col 46 of module dual_writes_vector_clock: 110
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 159, col 28 to line 159, col 103 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 160, col 28 to line 160, col 87 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 161, col 28 to line 161, col 157 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 161, col 49 to line 161, col 157 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 161, col 50 to line 161, col 66 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 161, col 75 to line 161, col 156 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 161, col 85 to line 161, col 156 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |||line 108, col 26 to line 111, col 1 of module dual_writes_vector_clock: 44:176
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 161, col 91 to line 161, col 124 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 161, col 127 to line 161, col 155 of module dual_writes_vector_clock: 220
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 162, col 28 to line 162, col 39 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 163, col 28 to line 163, col 45 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 164, col 28 to line 164, col 80 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 165, col 28 to line 166, col 79 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 167, col 28 to line 167, col 66 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 168, col 28 to line 169, col 59 of module dual_writes_vector_clock: 44
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<SendCache line 171, col 1 to line 171, col 15 of module dual_writes_vector_clock>: 30:64
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 171, col 23 to line 171, col 44 of module dual_writes_vector_clock: 490
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 171, col 23 to line 171, col 30 of module dual_writes_vector_clock: 426
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 172, col 23 to line 172, col 114 of module dual_writes_vector_clock: 64
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 173, col 23 to line 180, col 65 of module dual_writes_vector_clock: 64
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 181, col 23 to line 181, col 34 of module dual_writes_vector_clock: 64
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 182, col 23 to line 182, col 40 of module dual_writes_vector_clock: 64
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 183, col 23 to line 183, col 75 of module dual_writes_vector_clock: 64
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 184, col 23 to line 184, col 63 of module dual_writes_vector_clock: 64
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 185, col 23 to line 186, col 71 of module dual_writes_vector_clock: 64
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<GetAckCache line 188, col 1 to line 188, col 17 of module dual_writes_vector_clock>: 38:58
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 188, col 25 to line 188, col 48 of module dual_writes_vector_clock: 482
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 188, col 25 to line 188, col 32 of module dual_writes_vector_clock: 424
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 189, col 25 to line 189, col 47 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 189, col 25 to line 189, col 43 of module dual_writes_vector_clock: 164
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 190, col 25 to line 190, col 100 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 191, col 25 to line 191, col 84 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 192, col 25 to line 192, col 154 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 192, col 46 to line 192, col 154 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 192, col 47 to line 192, col 63 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 192, col 72 to line 192, col 153 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 192, col 82 to line 192, col 153 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |||line 108, col 26 to line 111, col 1 of module dual_writes_vector_clock: 58:232
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 192, col 88 to line 192, col 121 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 192, col 124 to line 192, col 152 of module dual_writes_vector_clock: 290
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 193, col 25 to line 193, col 36 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 194, col 25 to line 194, col 42 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 195, col 25 to line 195, col 77 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 196, col 25 to line 197, col 76 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 198, col 25 to line 198, col 58 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 199, col 25 to line 200, col 56 of module dual_writes_vector_clock: 58
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Receive line 205, col 1 to line 205, col 13 of module dual_writes_vector_clock>: 42:76
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 205, col 21 to line 205, col 40 of module dual_writes_vector_clock: 490
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 205, col 21 to line 205, col 28 of module dual_writes_vector_clock: 414
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 206, col 21 to line 206, col 43 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 206, col 21 to line 206, col 39 of module dual_writes_vector_clock: 178
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 207, col 21 to line 207, col 94 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 208, col 21 to line 208, col 80 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 209, col 21 to line 209, col 146 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 209, col 41 to line 209, col 146 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 209, col 42 to line 209, col 57 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 209, col 66 to line 209, col 145 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 209, col 76 to line 209, col 145 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |||line 108, col 26 to line 111, col 1 of module dual_writes_vector_clock: 76:304
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 209, col 82 to line 209, col 114 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 209, col 117 to line 209, col 144 of module dual_writes_vector_clock: 380
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 210, col 21 to line 210, col 32 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 211, col 21 to line 211, col 38 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 212, col 21 to line 212, col 72 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 213, col 21 to line 213, col 82 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 214, col 21 to line 214, col 78 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 215, col 21 to line 215, col 57 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 216, col 21 to line 216, col 71 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<SendAck line 218, col 1 to line 218, col 13 of module dual_writes_vector_clock>: 42:76
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 218, col 21 to line 218, col 40 of module dual_writes_vector_clock: 486
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 218, col 21 to line 218, col 28 of module dual_writes_vector_clock: 410
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 21 to line 219, col 109 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 220, col 21 to line 227, col 88 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 228, col 21 to line 228, col 32 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 229, col 21 to line 229, col 38 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 230, col 21 to line 230, col 72 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 231, col 24 to line 231, col 41 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 232, col 29 to line 232, col 68 of module dual_writes_vector_clock: 40
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 233, col 29 to line 233, col 65 of module dual_writes_vector_clock: 36
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 234, col 21 to line 235, col 61 of module dual_writes_vector_clock: 76
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Terminating line 240, col 1 to line 240, col 11 of module dual_writes_vector_clock>: 0:8
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 240, col 40 to line 240, col 56 of module dual_writes_vector_clock: 295
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 240, col 40 to line 240, col 47 of module dual_writes_vector_clock: 263
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 240, col 31 to line 240, col 37 of module dual_writes_vector_clock: 201
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 241, col 19 to line 241, col 32 of module dual_writes_vector_clock: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(17) at 2021-04-09 02:02:13: 325 states generated (15,139 s/min), 201 distinct states found (9,363 ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+325 states generated, 201 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 17.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 1297ms at (2021-04-09 02:02:13)
+@!@!@ENDMSG 2186 @!@!@
