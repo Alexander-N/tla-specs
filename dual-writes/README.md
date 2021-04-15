@@ -21,6 +21,6 @@ To get a more useful visualization we have to implement vector clocks as in [dua
 You can use it's [error trace](traces/dual_writes_vector_clock.out) as input to ShiViz to try out the interactive version.
 
 A similar thing can be achieved with https://github.com/dmilstein/channels as in [dual_writes_channels.tla](channels/dual_writes_channels.tla).
-![trace](images/channels_timeline.svg)
+![trace](images/channels_timeline.png)
 
 Note that you might need to make a small [change](https://github.com/dmilstein/channels/pull/3) to create the visualization and that the module seems to expect strings instead of model values.
