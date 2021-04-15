@@ -49,78 +49,18 @@
   
 
   
-  <line x1="650" y1="240" x2="250" y2="295"
+  <line x1="250" y1="75" x2="650" y2="185"
         marker-end="url(#arrow)" ></line>
 
-  <text x="245" y="295" class="state-label"
+  <text x="245" y="75" class="state-label"
         text-anchor="end"></text>
 
-  <text x="655" y="240" class="state-label"
+  <text x="655" y="185" class="state-label"
         text-anchor="start">A</text>
 
-    <path id="line-0" d="M 250,295 L 650,240"/>
+    <path id="line-0" d="M 250,75 L 650,185"/>
     <text>
-      <textPath href='#line-0' class="msg-label" startOffset="65%">Ack</textPath>
-    </text>
-
-  
-  <line x1="450" y1="515" x2="50" y2="625"
-        marker-end="url(#arrow)" ></line>
-
-  <text x="45" y="625" class="state-label"
-        text-anchor="end">B</text>
-
-  <text x="455" y="515" class="state-label"
-        text-anchor="start"></text>
-
-    <path id="line-1" d="M 50,625 L 450,515"/>
-    <text>
-      <textPath href='#line-1' class="msg-label" startOffset="65%">B</textPath>
-    </text>
-
-  
-  <line x1="50" y1="680" x2="450" y2="790"
-        marker-end="url(#arrow)" ></line>
-
-  <text x="45" y="680" class="state-label"
-        text-anchor="end">B</text>
-
-  <text x="455" y="790" class="state-label"
-        text-anchor="start"></text>
-
-    <path id="line-2" d="M 50,680 L 450,790"/>
-    <text>
-      <textPath href='#line-2' class="msg-label" startOffset="15%">Ack</textPath>
-    </text>
-
-  
-  <line x1="450" y1="185" x2="650" y2="350"
-        marker-end="url(#arrow)" ></line>
-
-  <text x="445" y="185" class="state-label"
-        text-anchor="end"></text>
-
-  <text x="655" y="350" class="state-label"
-        text-anchor="start">B</text>
-
-    <path id="line-3" d="M 450,185 L 650,350"/>
-    <text>
-      <textPath href='#line-3' class="msg-label" startOffset="15%">B</textPath>
-    </text>
-
-  
-  <line x1="50" y1="845" x2="250" y2="900"
-        marker-end="url(#arrow)" ></line>
-
-  <text x="45" y="845" class="state-label"
-        text-anchor="end">A</text>
-
-  <text x="255" y="900" class="state-label"
-        text-anchor="start"></text>
-
-    <path id="line-4" d="M 50,845 L 250,900"/>
-    <text>
-      <textPath href='#line-4' class="msg-label" startOffset="15%">Ack</textPath>
+      <textPath href='#line-0' class="msg-label" startOffset="15%">A</textPath>
     </text>
 
   
@@ -133,37 +73,97 @@
   <text x="655" y="405" class="state-label"
         text-anchor="start">B</text>
 
-    <path id="line-5" d="M 450,460 L 650,405"/>
+    <path id="line-1" d="M 450,460 L 650,405"/>
     <text>
-      <textPath href='#line-5' class="msg-label" startOffset="65%">Ack</textPath>
+      <textPath href='#line-1' class="msg-label" startOffset="65%">Ok</textPath>
     </text>
 
   
-  <line x1="250" y1="75" x2="650" y2="130"
+  <line x1="50" y1="680" x2="450" y2="735"
         marker-end="url(#arrow)" ></line>
 
-  <text x="245" y="75" class="state-label"
+  <text x="45" y="680" class="state-label"
+        text-anchor="end">B</text>
+
+  <text x="455" y="735" class="state-label"
+        text-anchor="start"></text>
+
+    <path id="line-2" d="M 50,680 L 450,735"/>
+    <text>
+      <textPath href='#line-2' class="msg-label" startOffset="15%">Ok</textPath>
+    </text>
+
+  
+  <line x1="650" y1="240" x2="250" y2="295"
+        marker-end="url(#arrow)" ></line>
+
+  <text x="245" y="295" class="state-label"
         text-anchor="end"></text>
 
-  <text x="655" y="130" class="state-label"
+  <text x="655" y="240" class="state-label"
         text-anchor="start">A</text>
 
-    <path id="line-6" d="M 250,75 L 650,130"/>
+    <path id="line-3" d="M 250,295 L 650,240"/>
     <text>
-      <textPath href='#line-6' class="msg-label" startOffset="15%">A</textPath>
+      <textPath href='#line-3' class="msg-label" startOffset="65%">Ok</textPath>
     </text>
 
   
-  <line x1="250" y1="570" x2="50" y2="735"
+  <line x1="450" y1="515" x2="50" y2="625"
         marker-end="url(#arrow)" ></line>
 
-  <text x="45" y="735" class="state-label"
+  <text x="45" y="625" class="state-label"
+        text-anchor="end">B</text>
+
+  <text x="455" y="515" class="state-label"
+        text-anchor="start"></text>
+
+    <path id="line-4" d="M 50,625 L 450,515"/>
+    <text>
+      <textPath href='#line-4' class="msg-label" startOffset="65%">B</textPath>
+    </text>
+
+  
+  <line x1="50" y1="845" x2="250" y2="900"
+        marker-end="url(#arrow)" ></line>
+
+  <text x="45" y="845" class="state-label"
+        text-anchor="end">A</text>
+
+  <text x="255" y="900" class="state-label"
+        text-anchor="start"></text>
+
+    <path id="line-5" d="M 50,845 L 250,900"/>
+    <text>
+      <textPath href='#line-5' class="msg-label" startOffset="15%">Ok</textPath>
+    </text>
+
+  
+  <line x1="450" y1="130" x2="650" y2="350"
+        marker-end="url(#arrow)" ></line>
+
+  <text x="445" y="130" class="state-label"
+        text-anchor="end"></text>
+
+  <text x="655" y="350" class="state-label"
+        text-anchor="start">B</text>
+
+    <path id="line-6" d="M 450,130 L 650,350"/>
+    <text>
+      <textPath href='#line-6' class="msg-label" startOffset="15%">B</textPath>
+    </text>
+
+  
+  <line x1="250" y1="570" x2="50" y2="790"
+        marker-end="url(#arrow)" ></line>
+
+  <text x="45" y="790" class="state-label"
         text-anchor="end">A</text>
 
   <text x="255" y="570" class="state-label"
         text-anchor="start"></text>
 
-    <path id="line-7" d="M 50,735 L 250,570"/>
+    <path id="line-7" d="M 50,790 L 250,570"/>
     <text>
       <textPath href='#line-7' class="msg-label" startOffset="65%">A</textPath>
     </text>

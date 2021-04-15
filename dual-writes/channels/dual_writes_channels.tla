@@ -52,7 +52,7 @@ begin
     end with;
     received := received + 1;
   SendAck:
-    C := Send(C, self, sender, Ack, "Ack", value);
+    C := Send(C, self, sender, Ack, "Ok", value);
     \* Only receive two messages, then terminate.
     if received < 2 then
       \* "while" would need another label so use goto instead to not spam the
@@ -64,7 +64,7 @@ end process;
 
 end algorithm;*)
 
-\* BEGIN TRANSLATION (chksum(pcal) = "8e437a" /\ chksum(tla) = "cccd43bc")
+\* BEGIN TRANSLATION (chksum(pcal) = "44d88e4a" /\ chksum(tla) = "22815835")
 VARIABLES C, pc, sender, value, received
 
 vars == << C, pc, sender, value, received >>
@@ -121,7 +121,7 @@ Receive(self) == /\ pc[self] = "Receive"
                  /\ pc' = [pc EXCEPT ![self] = "SendAck"]
 
 SendAck(self) == /\ pc[self] = "SendAck"
-                 /\ C' = Send(C, self, sender[self], Ack, "Ack", value[self])
+                 /\ C' = Send(C, self, sender[self], Ack, "Ok", value[self])
                  /\ IF received[self] < 2
                        THEN /\ pc' = [pc EXCEPT ![self] = "Receive"]
                        ELSE /\ pc' = [pc EXCEPT ![self] = "Done"]
