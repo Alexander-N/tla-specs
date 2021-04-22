@@ -8,7 +8,6 @@ VARIABLES board, currentPlayer
 
 vars == <<board, currentPlayer>>
 
-\* Constants
 winningPositions == {
   {1, 2, 3}, {1, 4, 7}, {1, 5, 9}, {2, 5, 8},
   {3, 5, 7}, {3, 6, 9}, {4, 5, 6}, {7, 8, 9}
@@ -26,24 +25,14 @@ NonEmpty(s) == Cardinality(s) > 0
 FreePositions == {p \in DOMAIN board : board[p] = Free}
 GetPositions(player) == {p \in DOMAIN board : board[p] = player}
 PlayerWon(player) == \E wp \in winningPositions : wp \subseteq GetPositions(player)
-Winner == IF PlayerWon("X")
-          THEN "X"
-          ELSE IF PlayerWon("O")
-          THEN "O"
+Winner == IF PlayerWon("X") THEN "X"
+          ELSE IF PlayerWon("O") THEN "O"
           ELSE NoOne
 BoardFull == Cardinality(FreePositions) = 0
 GameEnded == BoardFull \/ PlayerWon("X") \/ PlayerWon("O")
 IsWinningPosition(player, position) == \E wp \in winningPositions: wp \subseteq GetPositions(player) \union {position}
 IsBlockingOpponentWin(player, position) == IsWinningPosition(Other(player), position)
 ExecuteMove(player, position) == board' = [board EXCEPT ![position] = player]
-
-\* Debug Utilities
-PrintBoard ==
-  /\ PrintT(SubSeq(board, 1, 3))
-  /\ PrintT(SubSeq(board, 4, 6))
-  /\ PrintT(SubSeq(board, 7, 9))
-StopGame == Assert(FALSE, "Stop Game")
-
 
 RandomMove(player) ==
   /\ \E position \in DOMAIN board :
@@ -70,21 +59,32 @@ Init ==
   /\ currentPlayer = StartingPlayer
 
 Next ==
-    \/ ~GameEnded
-      /\ currentPlayer' = Other(currentPlayer)
-      /\
-        \/ currentPlayer = DumbPlayer
-          /\ RandomMove(currentPlayer)
-        \/ currentPlayer = SmartPlayer
-          /\ SmartMove(currentPlayer)
-    \/ GameEnded
-      /\ PrintT(Winner \o " won!")
-      /\ UNCHANGED vars
+  \/ ~GameEnded
+    /\
+      \/ currentPlayer = DumbPlayer
+        /\ RandomMove(currentPlayer)
+      \/ currentPlayer = SmartPlayer
+        /\ SmartMove(currentPlayer)
+    /\ currentPlayer' = Other(currentPlayer)
+  \/ GameEnded
+    /\ PrintT(Winner \o " won!")
+    /\ UNCHANGED vars
 
 Spec == Init /\ [][Next]_vars
 
-OnlyOneWinner == /\ PlayerWon("X") => ~PlayerWon("O")
-                 /\ PlayerWon("O") => ~PlayerWon("X")
+
+Range(f) == {f[x] : x \in DOMAIN f}
+TypeOK ==
+  /\ Range(board) \subseteq  {"X", "O", "_"}
+  /\ Cardinality(GetPositions("X")) <= 5
+  /\ Cardinality(GetPositions("O")) <= 5
+  /\ Cardinality(GetPositions("_")) <= 9
+
+OnlyOneWinner ==
+  /\ PlayerWon("X") => ~PlayerWon("O")
+  /\ PlayerWon("O") => ~PlayerWon("X")
+  /\ Winner = NoOne <=> ~PlayerWon("O") /\ ~PlayerWon("X")
+
 BalancedTurns ==
   LET TurnsStartingPlayer == Cardinality(GetPositions(StartingPlayer)) IN
   LET TurnsOtherPlayer == Cardinality(GetPositions(Other(StartingPlayer))) IN
@@ -93,4 +93,12 @@ BalancedTurns ==
 
 \* The smart player is not smart enough :-)
 DumbPlayerDoesNotWin == PlayerWon(DumbPlayer) = FALSE
+
+boardDisplay == [i \in 0..2 |-> SubSeq(board, (i*3)+1, (i*3)+3)]
+Alias == [
+  row1 |-> boardDisplay[0],
+  row2 |-> boardDisplay[1],
+  row3 |-> boardDisplay[2],
+  X_has_won |-> PlayerWon("X")
+]
 ====
