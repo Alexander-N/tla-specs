@@ -184,6 +184,8 @@ Trace:
 /\ waiters = <<Task2, Task1>>
 /\ taskStates = (Task1 :> waiting @@ Task2 :> canceled @@ Task3 :> done)
 /\ lockState = unlocked
+
+7: Stuttering
 ```
 
 [The fix](https://github.com/python/asyncio/pull/467/files) is again very
