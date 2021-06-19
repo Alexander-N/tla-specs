@@ -138,7 +138,7 @@ We do the same in [step3.tla](step3.tla)
 This seems to fix the issue, we don't get an error anymore.
 ## Step 4
 There is another bug mentioned in https://bugs.python.org/issue43991, which
-happens when a bug is canceled immediately after it was woken up. In this case
+happens when a task is canceled immediately after it was woken up. In this case
 the lock is not released after `release` was called and no other task is woken
 up, which means all other waiting tasks will wait forever.
 
