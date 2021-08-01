@@ -10,11 +10,12 @@ CONSTANTS
 VARIABLES
   acceptorValues,
   inboxes,
-  receivedMsgs
+  acceptedMsgs,
+  rejectedMsgs
 
 m == INSTANCE messaging
 
-vars == <<acceptorValues, inboxes, receivedMsgs>>
+vars == <<acceptorValues, inboxes, acceptedMsgs, rejectedMsgs>>
 
 Init ==
   /\ m!Init(Acceptors)
@@ -25,15 +26,22 @@ Propose(proposer) ==
   \E a \in Acceptors:
     /\ ~m!HasMessageReceived(a, msg)
     /\ m!Send(a, msg)
-    /\ UNCHANGED <<acceptorValues, receivedMsgs>>
+    /\ UNCHANGED <<acceptorValues>>
 
 AcceptMsg(acceptor, msg) ==
   acceptorValues' = [acceptorValues EXCEPT ![acceptor] = msg]
 
+HasAccepted(acceptor) ==
+  acceptorValues[acceptor] /= Null
+
 Accept(acceptor) ==
   \E msg \in m!Receive(acceptor):
-    /\ AcceptMsg(acceptor, msg)
-    /\ m!AckMsg(acceptor)
+    IF ~HasAccepted(acceptor) THEN
+      /\ AcceptMsg(acceptor, msg)
+      /\ m!AckMsg(acceptor)
+    ELSE
+      /\ m!RejectMsg(acceptor)
+      /\ UNCHANGED <<acceptorValues>>
 
 Terminating ==
   /\ \A node \in DOMAIN inboxes: Len(inboxes[node]) = 0
@@ -49,4 +57,7 @@ Spec == Init /\ [][Next]_vars
 Range(f) == {f[x] : x \in DOMAIN f}
 AllValuesEqual == \A v1, v2 \in Range(acceptorValues): v1 = v2
 EventuallyConsistent == <>[]AllValuesEqual
+
+NoValuesNull == \A v \in Range(acceptorValues): v /= Null
+ValuesGetEventuallySet == <>[]NoValuesNull
 ====

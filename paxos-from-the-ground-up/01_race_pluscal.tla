@@ -1,4 +1,5 @@
 \* http://imnaseer.net/paxos-from-the-ground-up.html?section=3&slide=2
+PlusCal options (-sf)
 ---- MODULE 01_race_pluscal ----
 EXTENDS TLC, Sequences, Integers
 CONSTANTS
@@ -7,6 +8,7 @@ CONSTANTS
   Capacity,
   Null
 
+(* PlusCal options (sf) *)
 (*--algorithm 01_race_pluscal
 
 variables
@@ -14,7 +16,7 @@ variables
   receivedMsgs = {},
 
 define
-  m == INSTANCE messaging
+  m == INSTANCE messagingPlusCal
 end define;
 
 macro Send(receiver, payload) begin
@@ -48,18 +50,20 @@ variables acceptorValue = Null;
 begin
   a1: while TRUE do
     with msg \in m!Receive(self) do
-      acceptorValue := msg;
+      if acceptorValue = Null then
+        acceptorValue := msg;
+      end if;
     end with;
     AckMsg(self);
   end while;
 end process;
 
 end algorithm; *)
-\* BEGIN TRANSLATION (chksum(pcal) = "2176eb7a" /\ chksum(tla) = "86984997")
+\* BEGIN TRANSLATION (chksum(pcal) = "4cb61611" /\ chksum(tla) = "7a0bd63a")
 VARIABLES inboxes, receivedMsgs
 
 (* define statement *)
-m == INSTANCE messaging
+m == INSTANCE messagingPlusCal
 
 VARIABLE acceptorValue
 
@@ -81,7 +85,10 @@ proposer(self) == /\ \E a \in Acceptors:
                   /\ UNCHANGED << receivedMsgs, acceptorValue >>
 
 acceptor(self) == /\ \E msg \in m!Receive(self):
-                       acceptorValue' = [acceptorValue EXCEPT ![self] = msg]
+                       IF acceptorValue[self] = Null
+                          THEN /\ acceptorValue' = [acceptorValue EXCEPT ![self] = msg]
+                          ELSE /\ TRUE
+                               /\ UNCHANGED acceptorValue
                   /\ LET inbox == inboxes[self] IN
                        LET ackMsg == Head(inbox) IN
                          /\ inboxes' = [inboxes EXCEPT ![self] = Tail(inbox)]
@@ -101,7 +108,11 @@ Terminating ==
   /\ UNCHANGED vars
 \* Spec with termination
 NextT == Next \/ Terminating
-SpecT == Init /\ [][NextT]_vars
+SpecT ==
+  /\ Init
+  /\ [][NextT]_vars
+  /\ \A self \in Acceptors : SF_vars(acceptor(self))
+  /\ \A self \in Proposers: SF_vars(proposer(self))
 
 Range(f) == {f[x] : x \in DOMAIN f}
 AllValuesEqual == \A v1, v2 \in Range(acceptorValue): v1 = v2
