@@ -1,6 +1,6 @@
 # Rate limiter
 
-Race condition described in the [redis documentation](https://redis.io/commands/incr/#pattern-rate-limiter-2). If a crash prevents that the expiry time of a request counter is set, then the counter will not be reset causing this IP address to be blocked forever.
+Race condition described in the [redis documentation](https://redis.io/commands/incr/#pattern-rate-limiter-2). If the setting of the expiry time of a request counter is aborted by some reason, say a crash or network problem, then the counter will not be reset causing this IP address to be blocked forever.
 
 From https://redis.io/commands/incr/#pattern-rate-limiter-2:
 > ## Pattern: Rate limiter 2

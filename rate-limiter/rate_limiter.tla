@@ -3,11 +3,11 @@ EXTENDS TLC, Integers
 CONSTANTS
   MAX_CLOCK,
   MAX_REQUESTS_PER_SECOND,
-  MAX_CRASHES,
+  MAX_ABORTS,
   Null
-VARIABLES counter, expirationTime, clock, pc, crashCounter
+VARIABLES counter, expirationTime, clock, pc, abortCounter
 
-vars == <<counter, expirationTime, clock, pc, crashCounter>>
+vars == <<counter, expirationTime, clock, pc, abortCounter>>
 
 Incr ==
   counter' = counter + 1
@@ -20,7 +20,7 @@ Init ==
   /\ expirationTime = Null
   /\ clock = 0
   /\ pc = "Incr"
-  /\ crashCounter = 0
+  /\ abortCounter = 0
 
 ClearExpiredValues ==
   IF clock + 1 = expirationTime
@@ -34,18 +34,20 @@ TimeStep ==
   /\ clock < MAX_CLOCK
   /\ ClearExpiredValues
   /\ clock' = clock + 1
-  /\ UNCHANGED <<pc, crashCounter>>
+  /\ UNCHANGED <<pc, abortCounter>>
 
-Crash ==
-  /\ crashCounter < MAX_CRASHES
-  /\ crashCounter' = crashCounter + 1
-  /\ pc' = "Crash"
+\* The process can be aborted. This state represents for example a crash, a
+\* network problem or some other error.
+Abort ==
+  /\ abortCounter < MAX_ABORTS
+  /\ abortCounter' = abortCounter + 1
+  /\ pc' = "Abort"
   /\ UNCHANGED <<clock, counter, expirationTime>>
 
 Recover ==
-  /\ pc = "Crash"
+  /\ pc = "Abort"
   /\ pc' = "Incr"
-  /\ UNCHANGED <<clock, counter, expirationTime, crashCounter>>
+  /\ UNCHANGED <<clock, counter, expirationTime, abortCounter>>
 
 LimitApiCall ==
   \/
@@ -56,12 +58,12 @@ LimitApiCall ==
     /\ IF counter = 0
         THEN pc' = "Expire"
         ELSE pc' = "Incr"
-    /\ UNCHANGED <<expirationTime, crashCounter, clock>>
+    /\ UNCHANGED <<expirationTime, abortCounter, clock>>
   \/
     /\ pc = "Expire"
     /\ Expire(1)
     /\ pc' = "Incr"
-    /\ UNCHANGED <<counter, crashCounter, clock>>
+    /\ UNCHANGED <<counter, abortCounter, clock>>
 
 \* Incr and Expire in one atomic step, represents the variant with the Lua
 \* script from the README.
@@ -74,16 +76,16 @@ LimitApiCallAtomic ==
     /\ IF counter = 0
         THEN Expire(1)
         ELSE UNCHANGED <<expirationTime>>
-  /\ UNCHANGED <<clock, crashCounter, pc>>
+  /\ UNCHANGED <<clock, abortCounter, pc>>
 
 Terminating ==
   /\ clock = MAX_CLOCK
   /\ ClearExpiredValues
-  /\ UNCHANGED <<clock, pc, crashCounter>>
+  /\ UNCHANGED <<clock, pc, abortCounter>>
 
 Next ==
   \/ LimitApiCall
-  \/ Crash
+  \/ Abort
   \/ Recover
   \/ TimeStep
   \/ Terminating
@@ -95,7 +97,7 @@ Spec ==
 
 NextAtomic ==
   \/ LimitApiCallAtomic
-  \/ Crash
+  \/ Abort
   \/ Recover
   \/ TimeStep
   \/ Terminating
@@ -107,11 +109,11 @@ SpecAtomic ==
 
 Range(f) == {f[x] : x \in DOMAIN f}
 TypeInvariant ==
-  /\ pc \in {"Incr", "Expire", "Crash"}
+  /\ pc \in {"Incr", "Expire", "Abort"}
   /\ clock \in  0..MAX_CLOCK
   /\ counter \in Nat
   /\ expirationTime \in {Null} \union 1..MAX_CLOCK+1
-  /\ crashCounter \in 0..MAX_CRASHES
+  /\ abortCounter \in 0..MAX_ABORTS
 
 \* Values are set to zero at their expiration time.
 ExpirationTimeResetsCounter == expirationTime = clock => counter = 0
