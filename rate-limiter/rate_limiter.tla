@@ -103,7 +103,7 @@ NextAtomic ==
 SpecAtomic ==
   /\ Init
   /\ [][NextAtomic]_vars
-  /\ WF_vars(Next)
+  /\ WF_vars(NextAtomic)
 
 Range(f) == {f[x] : x \in DOMAIN f}
 TypeInvariant ==
